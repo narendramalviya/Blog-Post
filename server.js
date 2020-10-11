@@ -14,9 +14,9 @@ app.set("view engine", "ejs");
 
 app.get("/", getAllPosts);
 
-// app.get("/signin", (req, res) => {
-// 	res.render("index");
-// });
+app.get("/home", (req, res) => {
+	res.render("home");
+});
 
 // app.get("/home/:name", (req, res) => {
 // 	let name = req.params;
