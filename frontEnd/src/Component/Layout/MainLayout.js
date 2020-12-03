@@ -7,18 +7,18 @@ import Home from "../Home/Home";
 import Admin from "../Admin/Admin";
 
 class MainLayout extends Component {
-	render() {
+	render() {console.log('main layout')
 		return (
-			<Container disableGutters maxWidth>
+			<div>
 				<Header />
 
 				<Switch>
 					<Route exact path="/" component={Home} />
 
-					<Route exact path="/admin" component={Admin} />
+					<Route  path="/admin" component={Admin} />
 				</Switch>
 				<Footer />
-			</Container>
+			</div>
 		);
 	}
 }

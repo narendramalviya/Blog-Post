@@ -7,7 +7,7 @@ class Posts extends Component {
 		Posts: null,
 	};
 	componentDidMount() {
-		fetch(`${api}/api/all-post`)
+		fetch(`${api}/all-post`)
 			.then((response) => response.json())
 			.then((posts) => {
 				this.setState({
