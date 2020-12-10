@@ -1,7 +1,8 @@
 const api = process.env.REACT_APP_API;
-exports.fetchAllPost = (url) => {
-	// console.log(url,api);
-	return fetch(`${api}/${url}`)
+exports.fetchAllPost = (url,poststatus) => {
+	console.log(url,poststatus);
+	 
+	return fetch(`${api}/${url}/?statusid=${poststatus}`)
 		.then((response) => response.json())
 		.then((result) => result);
 };

@@ -16,12 +16,12 @@ class Posts extends Component {
 			});
 	}
 	render() {
-		// console.log('posts',this.state.Posts);
+		console.log('posts',this.state.Posts);
 		let posts = null;
 		const postState = this.state.Posts;
 		if (postState != null) {
 			posts = postState.map((post, index) => (
-				<Grid item key={index} xs={12} sm={6} md={3}>
+				<Grid item key={index} xs={12} sm={6} md={4} className="p-2">
 				<Post post={post} num={index} />
                 </Grid>
 			));
@@ -29,7 +29,7 @@ class Posts extends Component {
 		return (
 			<Grid
 				container
-				spacing={1}
+				
 				direction="row"
 				justify="center"
 				alignItems="flex-start"

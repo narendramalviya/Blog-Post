@@ -31,7 +31,7 @@ class Admin extends Component {
         const {path} = this.props.match;
         // console.log(this.props);
 		return (
-			<div className="row mt-5">
+			<div className="row m-0 mt-5">
 				<div className="col-2 border">
 					<nav className="mt-3 nav">
 						<ul className="align-content-center d-flex flex-column justify-content-center p-3" style={style1}>

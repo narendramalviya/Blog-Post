@@ -20,11 +20,11 @@ class Home extends Component {
 			{ src: programmingImg, name: "programming" },
 			{ src: spaceImg, name: "space" },
 		];
-		console.log("arr", category);
+		// console.log("arr", category);
 		const cateImgStyles = {
-			width: "150px",
-			height: "150px",
-			borderRadius: "75px",
+			width: "140px",
+			height: "140px",
+			borderRadius: "70px",
 			margin: "5px",
 		};
 		let categoryIcons = category.map((cate, index) => (
@@ -42,26 +42,26 @@ class Home extends Component {
 		));
 
 		return (
-			<div className="">
-				<div className="row p-5">
+			<div >
+				<div className="row p-5 m-0">
 					<div className="align-items-center col d-flex flex-column justify-content-center">
 						<h1 className="font-weight-normal text-center">
 							17 Blogging Mistakes to Avoid in 2020, According to
 							HubSpot Bloggers
 						</h1>
-						<div class="align-content-between d-flex justify-content-center">
+						<div className="align-content-between d-flex justify-content-center">
 							<img
 								id="authorPic"
 								src={authorImg}
 								alt="author"
 								style={{
-									width: "93px",
-									height: "93px",
-									borderRadius: "46px",
+									width: "90px",
+									height: "90px",
+									borderRadius: "45px",
 								}}
 							/>
 							<div className="align-items-center d-flex">
-								<p class="mb-0 ml-3">
+								<p className="mb-0 ml-3">
 									{" "}
 									Written by Lindsay Kolowich Cox
 								</p>
@@ -79,8 +79,11 @@ class Home extends Component {
 				</div>
 				<p className="text-center">&#x25cf;&#x25cf;&#x25cf;</p>
 				{/* category icons */}
-				<div className="row my-5">{categoryIcons}</div>
+				<div className="row my-5 mx-0">{categoryIcons}</div>
+				<div className="row my-5 mx-0">
+
                 <Posts/>
+				</div>
                 
 			</div>
 		);
