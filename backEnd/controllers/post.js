@@ -1,7 +1,8 @@
 const { connection } = require("../dbConfig");
 // get all post 
 exports.getAllPosts = (req, res) => {
-	let sql = "SELECT *FROM Post";
+	console.log(req.query.poststatus)
+	let sql = `SELECT *FROM Post WHERE CASE WHEN ${req.query.statusid} THEN status = ${req.query.statusid} ELSE 1 END`;
 	connection.query(sql, (error, posts) => {
 		if (error) {
 			return res.json({
@@ -34,9 +35,9 @@ exports.getPostById = (req, res) => {
 };
 
 // create new post
-exports.createPost = (req, res) => {
-	const { userId,title, description, content,fileId,categoryId } = req.body;
-	
+exports.newPost = (req, res) => {
+	// const { userId,title, description, content,fileId,categoryId } = req.body;
+	console.log(req.body);
 	let sql = 'INSERT INTO Post(fk_user_id, title, description, content, fk_file_id, fk_category_id) VALUES(?,?,?,?,?,?)';
 
 	connection.query(sql,Object.values(req.body) ,(error, result) => {
@@ -50,6 +51,7 @@ exports.createPost = (req, res) => {
 	      res.json({result});
 		}
 	});
+	// res.json({body:req.body});
 };
 
 // update post by post id

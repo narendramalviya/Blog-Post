@@ -10,7 +10,21 @@ const post = require('./routes/post');
 // app middleware
 app.use(express.static('public'));
 app.use(bodyParser.json())
-app.use(cors());
+// app.use(cors());
+
+app.use((req,res,next)=>{
+	 res.setHeader('Access-Control-Allow-Origin','*');
+	 res.setHeader('Access-Control-Allow-Methods','GET','POST','DELETE','OPTIONS','PUT');
+	//   // Request headers you wish to allow
+	  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type,Accept,Access-Control-Allow-Origin');
+
+	//   // Set to true if you need the website to include cookies in the requests sent
+	//   // to the API (e.g. in case you use sessions)
+	  res.setHeader('Access-Control-Allow-Credentials', false);
+
+	  next();
+
+})
 
 app.get("/home", (req, res) => {
 	res.render("home");
