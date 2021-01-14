@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/static/js/main.b4e6718d.chunk.js",
+    "main.js.map": "/static/js/main.b4e6718d.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.165ef12d.js",
+    "runtime-main.js.map": "/static/js/runtime-main.165ef12d.js.map",
+    "static/js/2.54d814e6.chunk.js": "/static/js/2.54d814e6.chunk.js",
+    "static/js/2.54d814e6.chunk.js.map": "/static/js/2.54d814e6.chunk.js.map",
+    "static/js/3.0a5ec738.chunk.js": "/static/js/3.0a5ec738.chunk.js",
+    "static/js/3.0a5ec738.chunk.js.map": "/static/js/3.0a5ec738.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.6dea0f05.chunk.css.map": "/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.54d814e6.chunk.js.LICENSE.txt": "/static/js/2.54d814e6.chunk.js.LICENSE.txt",
+    "static/media/astronaut-11080_640.b4e9c3d2.jpg": "/static/media/astronaut-11080_640.b4e9c3d2.jpg",
+    "static/media/blogging-for-beginners.81ac7996.webp": "/static/media/blogging-for-beginners.81ac7996.webp",
+    "static/media/dc4425bd-834b-4f4f-abb6-0c0b5e7432f5.1a7e33ad.jpg": "/static/media/dc4425bd-834b-4f4f-abb6-0c0b5e7432f5.1a7e33ad.jpg",
+    "static/media/earth-11015_640.cf14fc93.jpg": "/static/media/earth-11015_640.cf14fc93.jpg",
+    "static/media/girl-5760039_640.d17c8869.jpg": "/static/media/girl-5760039_640.d17c8869.jpg",
+    "static/media/lindsay kolowich headshot.27fc002e.jpg": "/static/media/lindsay kolowich headshot.27fc002e.jpg",
+    "static/media/protective-suit-5716753_640.b7fe3f66.jpg": "/static/media/protective-suit-5716753_640.b7fe3f66.jpg",
+    "static/media/squirrel-5728047_640.034bcf04.jpg": "/static/media/squirrel-5728047_640.034bcf04.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.165ef12d.js",
+    "static/js/2.54d814e6.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.b4e6718d.chunk.js"
+  ]
+}

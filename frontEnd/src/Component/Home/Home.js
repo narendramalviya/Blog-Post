@@ -8,43 +8,59 @@ import natureImg from "../Assets/Image/squirrel-5728047_640.jpg";
 import politicsImg from "../Assets/Image/protective-suit-5716753_640.jpg";
 import programmingImg from "../Assets/Image/earth-11015_640.jpg";
 import spaceImg from "../Assets/Image/astronaut-11080_640.jpg";
-
+import { ListItemText, Input, TextField, Button } from "@material-ui/core/";
 
 class Home extends Component {
 	render() {
+		const badgeColors = [
+			"primary",
+			"secondary",
+			"success",
+			"danger",
+			"warning",
+			"info",
+			"light",
+			"dark",
+		];
+		// const category = [
+		// 	{ src: fasionImg, name: "fasion" },
+		// 	{ src: natureImg, name: "nature" },
+		// 	{ src: historyImg, name: "history" },
+		// 	{ src: politicsImg, name: "politics" },
+		// 	{ src: programmingImg, name: "programming" },
+		// 	{ src: spaceImg, name: "space" },
+		// ];
+
 		const category = [
-			{ src: fasionImg, name: "fasion" },
-			{ src: natureImg, name: "nature" },
-			{ src: historyImg, name: "history" },
-			{ src: politicsImg, name: "politics" },
-			{ src: programmingImg, name: "programming" },
-			{ src: spaceImg, name: "space" },
+			"fasion",
+			"nature",
+			"history",
+			"politics",
+			"programming",
+			"space",
 		];
 		// console.log("arr", category);
 		const cateImgStyles = {
-			width: "140px",
-			height: "140px",
-			borderRadius: "70px",
+			width: "112px",
+			height: "112px",
+			borderRadius: "57px",
 			margin: "5px",
 		};
 		let categoryIcons = category.map((cate, index) => (
-			<div className="col" key={index}>
-				<div className="d-flex justify-content-center">
-					<img
-						id={index}
-						src={cate.src}
-						alt={cate.name}
-						style={cateImgStyles}
-					/>
-				</div>
-				<p className="text-center">{cate.name}</p>
-			</div>
+			<Button
+				key={index}
+				variant="contained"
+				color={badgeColors[index % 8]}
+				className="mr-2"
+			>
+				{cate}
+			</Button>
 		));
 
 		return (
-			<div >
+			<div>
 				<div className="row p-5 m-0">
-					<div className="align-items-center col d-flex flex-column justify-content-center">
+					<div className="align-items-center col-12 col-lg-6 col-md-6 col-xl-6 d-flex flex-column justify-content-center">
 						<h1 className="font-weight-normal text-center">
 							17 Blogging Mistakes to Avoid in 2020, According to
 							HubSpot Bloggers
@@ -68,23 +84,22 @@ class Home extends Component {
 							</div>
 						</div>
 					</div>
-					<div className="col">
+					<div className="d-flex align-items-center col-12 col-lg-6 col-md-6 col-xl-6 justify-content-center">
 						<img
 							src={bannerImg}
 							alt="random pic"
-							// style={{ width: "100%", height: "417px" }}
-							className="img-fluid"
+							style={{ width: "400px" }}
 						/>
 					</div>
 				</div>
 				<p className="text-center">&#x25cf;&#x25cf;&#x25cf;</p>
 				{/* category icons */}
-				<div className="row my-5 mx-0">{categoryIcons}</div>
-				<div className="row my-5 mx-0">
-
-                <Posts/>
+				<div className="align-items-center d-flex justify-content-center mx-0 my-5 row">
+					{categoryIcons}
 				</div>
-                
+				<div className="row my-5 mx-0">
+					<Posts />
+				</div>
 			</div>
 		);
 	}

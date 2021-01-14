@@ -21,6 +21,7 @@ import SaveIcon from "@material-ui/icons/Save";
 import { Link,Switch,Route } from "react-router-dom";
 import NewPost from './NewPost';
 import UserPosts from './UserPosts';
+import EditPost from './EditPost';
 
 
 class Admin extends Component {
@@ -42,7 +43,7 @@ class Admin extends Component {
 								<Link to={`${path}/new-post`} >New Post</Link>
 							</li>
 							<li className="mt-1">
-								<Link to="" >option3</Link>
+								<Link to="" >Bulk SMS</Link>
 							</li>
 							<li className="mt-1">
 								<Link to="">option4</Link>
@@ -57,6 +58,7 @@ class Admin extends Component {
                      <Switch>
                          <Route exact path={`${path}`} component={UserPosts}/>
                          <Route exact path={`${path}/new-post`} component={NewPost}/>
+                         <Route exact path={`${path}/edit-post/:postId`} component={EditPost}/>
                      </Switch>
                 </div>
 			</div>

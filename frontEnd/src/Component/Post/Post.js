@@ -32,6 +32,15 @@ const Post = ({ post, num }) => {
 
 			<PersonIcon />
 			<p className="mb-0 ml-1">Author {fk_user_id}</p>
+
+			<div className="d-flex">
+			<i class="far fa-thumbs-up"></i>
+			  <p>Like</p>
+			  <i class="far fa-comments"></i>
+			  <p>Comments</p>
+			  <i class="far fa-share-square"></i>
+			  <p>Share</p>
+			</div>
 			</div>
 			{/* <p>{content}</p> */}
 		</Paper>

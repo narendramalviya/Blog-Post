@@ -1,25 +1,23 @@
 import React, { Component } from "react";
-import Post from "../Post/Post";
-import { Grid } from "@material-ui/core";
 import { ListItemText, Input, TextField, Button } from "@material-ui/core/";
-import { fetchAllPost } from "./api/api";
+import { allPost } from "./api/api";
 import UserPost from "./UserPost";
+import Modal from "../Ui/Modal/Modal";
 
 class UserPosts extends Component {
 	state = {
 		posts: null,
 		fileterBy: null,
 	};
-
+	
 	componentDidMount() {
 		this.fetchPostsData();
 	}
-	componentDidUpdate(prevProp,oldState) {
-		console.log("did update",prevProp,oldState);
-		// if (oldState.fileterBy !== this.state.fileterBy) {
-		// 	 this.fetchPostsData();
-		// }
-	
+	componentDidUpdate(prevProp, oldState) {
+		// console.log("did update", prevProp, oldState);
+		if (oldState.fileterBy !== this.state.fileterBy) {
+			this.fetchPostsData();
+		}
 	}
 	selectOnChange = (event) => {
 		this.setState({
@@ -27,9 +25,9 @@ class UserPosts extends Component {
 		});
 	};
 	fetchPostsData = () => {
-		fetchAllPost("/all-post", this.state.fileterBy)
+		allPost("/all-post", this.state.fileterBy)
 			.then((posts) => {
-				console.log("posts[fetALlData,userpost]", posts);
+				// console.log("posts[fetALlData,userpost]", posts);
 				if (posts.error) {
 					console.log("if inside", posts);
 					alert("error");
@@ -41,26 +39,34 @@ class UserPosts extends Component {
 			})
 			.catch((error) => console.log("failed to fetch all post", error));
 	};
+
+	onClickOpenModal = () => {
+		// console.log("onClickOPenModal", this.showModal);
+		this.setState({
+			showModal: true,
+		});
+	};
 	render() {
 		// console.log("posts-render", this.state.posts);
+
 		let posts = null;
 		const postState = this.state.posts;
 		if (postState != null) {
 			posts = postState.map((post, index) => (
-				<Grid item key={index} xs={12} sm={12} md={12}>
-					<UserPost post={post} />
-				</Grid>
+				<div key={index} className="col-12">
+					<UserPost post={post} openModal={this.onClickOpenModal} path={this.props.match.path} />
+				</div>
 			));
 		}
 		return (
 			<div>
 				<div className="row">
 					<div className="col-8">
-						<h1>Posts</h1>
+						<h4 className="ml-4">Posts</h4>
 					</div>
 				</div>
-				<div className="d-flex flex-column">
-					<div className="d-flex ">
+				<div className="d-flex justify-content-between px-3">
+					<div className="d-flex h-100">
 						<TextField
 							label="Search By Author/Title"
 							variant="outlined"
@@ -71,21 +77,21 @@ class UserPosts extends Component {
 						/>
 						<button className="btn btn-primary mt-2">Search</button>
 					</div>
-				</div>
-				<div className="form-group">
-					<label htmlFor="sel1">Select list:</label>
-					<select
-						className="form-control"
-						id="sel1"
-						name="postStatus"
-						onChange={this.selectOnChange}
-					>
-						<option  >All Posts</option>
-						<option value="1">Published</option>
-						<option value="2">UnPublished</option>
-					</select>
+					<div className="form-group">
+						<label htmlFor="sel1">Select list:</label>
+						<select
+							className="form-control"
+							name="postStatus"
+							onChange={this.selectOnChange}
+						>
+							<option value="0">All Posts</option>
+							<option value="1">UnPublished</option>
+							<option value="2">Published</option>
+						</select>
+					</div>
 				</div>
 				{posts}
+
 			</div>
 		);
 	}

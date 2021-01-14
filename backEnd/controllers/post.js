@@ -1,74 +1,75 @@
+const Post = require("../models/post.js");
 const { connection } = require("../dbConfig");
-// get all post 
+// get all post
 exports.getAllPosts = (req, res) => {
-	console.log(req.query.poststatus)
-	let sql = `SELECT *FROM Post WHERE CASE WHEN ${req.query.statusid} THEN status = ${req.query.statusid} ELSE 1 END`;
-	connection.query(sql, (error, posts) => {
-		if (error) {
-			return res.json({
-				error,
-				// console.log(err);
-			});
-		} else {
-			// console.log(result);
-			res.json(posts);
-		}
-	});
+	console.log(req.query.statusid, " ", typeof req.query.statusid);
+	// SELECT id,(SELECT COUNT(id) FROM comment WHERE id = Post.id) AS comments,(SELECT COUNT(id) FROM likes WHERE id = Post.id) AS likes FROM BlogPost.Post;
+	// ---------------------
+	const post = new Post();
+	post.getAll(req.query.statusid)
+		.then(([rows, fields]) => {
+			//    console.log('rows ',rows);
+			res.json(rows);
+		})
+		.catch((err) => {
+			console.log("error post.js[controller]", err);
+			res.json({ error: err });
+		});
 };
 
 // get post by id
 exports.getPostById = (req, res) => {
 	// return res.send(req.params.id);
-	let sql = `SELECT *FROM Post WHERE id = ${req.params.id}`;
-
-	connection.query(sql, (error, post) => {
-		if (error) {
-			return res.json({
-				error,
-				// console.log(err);
-			});
-		} else {
-			// console.log(result);
-			res.json({ post });
-		}
-	});
+	const post = new Post();
+	post.getById(req.params.id)
+		.then(([rows, fields]) => {
+			//    console.log('rows ',rows);
+			res.json(rows);
+		})
+		.catch((err) => {
+			console.log("error post.js[controller]", err);
+			res.json({ error: err });
+		});
 };
 
 // create new post
 exports.newPost = (req, res) => {
 	// const { userId,title, description, content,fileId,categoryId } = req.body;
 	console.log(req.body);
-	let sql = 'INSERT INTO Post(fk_user_id, title, description, content, fk_file_id, fk_category_id) VALUES(?,?,?,?,?,?)';
-
-	connection.query(sql,Object.values(req.body) ,(error, result) => {
-		if (error) {
-			return res.json({
-				error,
-				// console.log(err);
-			});
-		} else {
-			// console.log(result);
-	      res.json({result});
-		}
-	});
-	// res.json({body:req.body});
+	const post = new Post(req.body);
+	post.create()
+		.then(([rows, fields]) => {
+			//    console.log('rows ',rows);
+			res.json(rows);
+		})
+		.catch((err) => {
+			console.log("error post.js[controller]", err);
+			res.json({ error: err });
+		});
 };
 
 // update post by post id
 exports.updatePostById = (req, res) => {
-	const { userId,title, description, content,fileId,categoryId } = req.body;
-	
-	let sql = `UPDATE Post SET fk_user_id = ?, title = ?, description = ?, content = ?, fk_file_id = ?, fk_category_id = ? WHERE id = ${req.params.id}`;
-
-	connection.query(sql,Object.values(req.body) ,(error, result) => {
-		if (error) {
-			return res.json({
-				error,
-				// console.log(err);
-			});
-		} else {
-			// console.log(result);
-	      res.json({result});
-		}
-	});
+	const post = new Post(req.body);
+	post.update(req.params.id)
+		.then(([rows, fields]) => {
+			//    console.log('rows ',rows);
+			res.json(rows);
+		})
+		.catch((err) => {
+			console.log("error post.js[controller]", err);
+			res.json({ error: err });
+		});
+};
+exports.deletePostById = (req, res) => {
+	const post = new Post();
+	post.deleteById(req.body.postId)
+		.then(([rows, fields]) => {
+			//    console.log('rows ',rows);
+			res.json(rows);
+		})
+		.catch((err) => {
+			console.log("error post.js[controller]", err);
+			res.json({ error: err });
+		});
 };
