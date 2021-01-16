@@ -3,6 +3,7 @@ import { ListItemText, Input, TextField, Button } from "@material-ui/core/";
 import SaveIcon from "@material-ui/icons/Save";
 import { Link } from "react-router-dom";
 import { newPost } from "./api/api";
+import Notification from "../Ui/NotificationToast/Notification";
 class NewPost extends Component {
 	state = {
 		post: {
@@ -10,11 +11,10 @@ class NewPost extends Component {
 			title: "new post title",
 			description: "some descriptio about new post",
 			content:
-			"React is a library for creating front end views. It has a big ecosystem of libraries that work with it. Also, we can use it to enhance existing apps To build single-page apps, we have to have some way to map URLs to the React component to display.In this article, we’ll look at how to define nested routes with React Router.Nested Routes To define nested routes, first, we define a grandchild route to display the content of the nested routes. We can use the useParams hook to get any route parameters.Then we can define nested routes by defining a child component to hold our nested routes.In the child component, we get the url and path properties from the useRouteMatch hook.Then we use the url variable to prefix the path in the to prop of the Link s. In the Route components, we prefix the path prop with the path property returned from useRouteMatchm Then we create a parent component that holds the child route that we defined above.",
+				"React is a library for creating front end views. It has a big ecosystem of libraries that work with it. Also, we can use it to enhance existing apps To build single-page apps, we have to have some way to map URLs to the React component to display.In this article, we’ll look at how to define nested routes with React Router.Nested Routes To define nested routes, first, we define a grandchild route to display the content of the nested routes. We can use the useParams hook to get any route parameters.Then we can define nested routes by defining a child component to hold our nested routes.In the child component, we get the url and path properties from the useRouteMatch hook.Then we use the url variable to prefix the path in the to prop of the Link s. In the Route components, we prefix the path prop with the path property returned from useRouteMatchm Then we create a parent component that holds the child route that we defined above.",
 			fileId: 2,
 			categoryId: 2,
-		}
-	
+		},
 	};
 	componentDidMount() {
 		//
@@ -22,20 +22,25 @@ class NewPost extends Component {
 	onChange = (event) => {
 		const { name, value } = event.target;
 		const oldState = this.state.post;
-		this.setState(
-			{
-				post: { ...oldState, [name]: value },
-			}
-		);
+		this.setState({
+			post: { ...oldState, [name]: value },
+		});
 	};
 	onSubmit = () => {
-		newPost("new-post", { ...this.state.post }).then(result=> {
-			if(result.error){
-				console.log(result.error);
-			}
-			else 
-			  console.log('result',result);
-		}).catch(err=> console.log(err));
+		newPost({ ...this.state.post })
+			.then((result) => {
+				if (result.error) {
+					alert("getting some error check dev console !!");
+					console.log(result.error);
+				} else {
+					alert("post created !!");
+					console.log("result", result);
+				}
+			})
+			.catch((err) => {
+				alert("getting some error check dev console !!");
+				console.log(err)
+			});
 	};
 
 	render() {
@@ -53,6 +58,7 @@ class NewPost extends Component {
 				<div className="mb-5">
 					<h3 className="text-center  ">New Post</h3>
 				</div>
+				<Notification />
 				<form
 					className={" ustify-content-center"}
 					noValidate

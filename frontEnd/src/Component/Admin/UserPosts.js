@@ -25,7 +25,7 @@ class UserPosts extends Component {
 		});
 	};
 	fetchPostsData = () => {
-		allPost("/all-post", this.state.fileterBy)
+		allPost(this.state.fileterBy)
 			.then((posts) => {
 				// console.log("posts[fetALlData,userpost]", posts);
 				if (posts.error) {

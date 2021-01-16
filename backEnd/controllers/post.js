@@ -3,8 +3,6 @@ const { connection } = require("../dbConfig");
 // get all post
 exports.getAllPosts = (req, res) => {
 	console.log(req.query.statusid, " ", typeof req.query.statusid);
-	// SELECT id,(SELECT COUNT(id) FROM comment WHERE id = Post.id) AS comments,(SELECT COUNT(id) FROM likes WHERE id = Post.id) AS likes FROM BlogPost.Post;
-	// ---------------------
 	const post = new Post();
 	post.getAll(req.query.statusid)
 		.then(([rows, fields]) => {
@@ -23,7 +21,7 @@ exports.getPostById = (req, res) => {
 	const post = new Post();
 	post.getById(req.params.id)
 		.then(([rows, fields]) => {
-			//    console.log('rows ',rows);
+			   console.log('rows ',rows);
 			res.json(rows);
 		})
 		.catch((err) => {
@@ -50,10 +48,11 @@ exports.newPost = (req, res) => {
 
 // update post by post id
 exports.updatePostById = (req, res) => {
+	console.log('update post by id')
 	const post = new Post(req.body);
 	post.update(req.params.id)
 		.then(([rows, fields]) => {
-			//    console.log('rows ',rows);
+			   console.log('rows ',rows);
 			res.json(rows);
 		})
 		.catch((err) => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const UserPost = ({ post, openModal,path }) => {
+const UserPost = ({ post, openModal, path }) => {
 	const {
 		id,
 		fk_user_id,
@@ -18,7 +18,7 @@ const UserPost = ({ post, openModal,path }) => {
 		<div className="card d-flex mt-3" style={{ width: "100%" }}>
 			<div className="align-items-center card-body d-flex justify-content-between p-1">
 				<div className="d-flex flex-column">
-					<p className="mb-0">{title}</p>
+					<p className="mb-0 text-primary">{title}</p>
 					<div className="badge d-flex font-weight-normal">
 						<div className="align-items-center d-flex flex-column justify-content-center p-0">
 							<p className="mb-0">Likes</p>
@@ -48,17 +48,16 @@ const UserPost = ({ post, openModal,path }) => {
 					</div>
 					<div className="d-flex">
 						<Link to={`${path}/edit-post/${id}`}>
-							Edit
-							{/* <i
+							<i
 								className="fas fa-edit mr-2 btn btn-sm btn-primary"
 								type="button"
-							></i> */}
+							></i>
 						</Link>
-							Delete
-						{/* <i
+
+						<i
 							className="far fa-trash-alt btn btn-sm btn-danger"
 							type="button"
-						></i> */}
+						></i>
 					</div>
 				</div>
 			</div>

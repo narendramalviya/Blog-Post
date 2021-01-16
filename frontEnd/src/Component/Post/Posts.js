@@ -12,10 +12,11 @@ class Posts extends Component {
 	};
 	componentDidMount() {
 		this.setState({ showSpinner: true });
-		allPost("/all-post", this.state.fileterBy)
+		allPost(this.state.fileterBy)
 			.then((posts) => {
 				// console.log("posts.js", posts);
 				if (posts.error) {
+					this.setState({ showSpinner: false });
 					console.log("if inside", posts);
 					alert("error");
 				} else {
@@ -28,7 +29,7 @@ class Posts extends Component {
 			.catch((error) => {
 				console.log("failed to fetch all post", error);
 				this.setState({
-					showSpinner: false
+					showSpinner: false,
 				});
 			});
 	}

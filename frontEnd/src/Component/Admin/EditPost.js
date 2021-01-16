@@ -3,7 +3,8 @@ import { ListItemText, Input, TextField, Button } from "@material-ui/core/";
 import SaveIcon from "@material-ui/icons/Save";
 import { Link, useParams } from "react-router-dom";
 import { editPost } from "./api/api";
-import Spinner from '../Ui/Spinner';
+import Spinner from "../Ui/Spinner";
+import { getPostById } from "./api/api";
 class EditPost extends Component {
 	state = {
 		post: {
@@ -14,12 +15,28 @@ class EditPost extends Component {
 				"React is a library for creating front end views. It has a big ecosystem of libraries that work with it. Also, we can use it to enhance existing apps To build single-page apps, we have to have some way to map URLs to the React component to display.In this article, we’ll look at how to define nested routes with React Router.Nested Routes To define nested routes, first, we define a grandchild route to display the content of the nested routes. We can use the useParams hook to get any route parameters.Then we can define nested routes by defining a child component to hold our nested routes.In the child component, we get the url and path properties from the useRouteMatch hook.Then we use the url variable to prefix the path in the to prop of the Link s. In the Route components, we prefix the path prop with the path property returned from useRouteMatchm Then we create a parent component that holds the child route that we defined above.",
 			fileId: 2,
 			categoryId: 2,
+			status: 2,
 		},
 		showSpinner: false,
 	};
 	componentDidMount() {
-		// this.setState({p})
-		//
+		this.setState({ showSpinner: true });
+		getPostById(this.props.match.params.postId)
+			.then((post) => {
+				console.log("edit post :", post);
+				let postData = {};
+				postData.title = post[0].title;
+				postData.description = post[0].description;
+				postData.status = post[0].status;
+				postData.fileId = post[0].fk_file_id;
+				postData.categoryId = post[0].fk_category_id;
+				postData.content = post[0].content;
+				this.setState({ post: postData, showSpinner: false });
+			})
+			.catch((error) => {
+				this.setState({ showSpinner: false });
+				console.log(error);
+			});
 	}
 	onChange = (event) => {
 		const { name, value } = event.target;
@@ -30,23 +47,25 @@ class EditPost extends Component {
 	};
 	onSubmit = () => {
 		this.setState({ showSpinner: true });
-		editPost(`update-post/${this.props.match.params.postId}`, {
+		editPost(this.props.match.params.postId, {
 			...this.state.post,
 		})
 			.then((result) => {
 				this.setState({ showSpinner: false });
 				if (result.error) {
+					alert("getting error !!");
 					console.log(result.error);
-				} else console.log("result", result);
+				} else {alert("post updated !!");console.log("result", result);}
 			})
 			.catch((err) => {
+				alert("error !!");
 				this.setState({ showSpinner: false });
 				console.log(err);
 			});
 	};
 
 	render() {
-		console.log("edit post", this.props);
+		// console.log("edit post", this.props);
 		const {
 			userId,
 			title,
@@ -58,8 +77,9 @@ class EditPost extends Component {
 		return (
 			<div>
 				<div className="mb-5">
-					<h3 className="text-center">Edit Post { this.state.showSpinner ? <Spinner /> : ''}</h3>
-					
+					<h3 className="text-center">
+						Edit Post {this.state.showSpinner ? <Spinner /> : ""}
+					</h3>
 				</div>
 				<form
 					className={" ustify-content-center"}

@@ -28,19 +28,18 @@ const Post = ({ post, num }) => {
 				{id}.{truncatedTitle}
 			</p>
 
-			<div className="d-flex">
-
-			<PersonIcon />
-			<p className="mb-0 ml-1">Author {fk_user_id}</p>
-
-			<div className="d-flex">
-			<i class="far fa-thumbs-up"></i>
-			  <p>Like</p>
-			  <i class="far fa-comments"></i>
-			  <p>Comments</p>
-			  <i class="far fa-share-square"></i>
-			  <p>Share</p>
-			</div>
+			<div className="d-flex justify-content-between">
+				<p className="mb-0">
+					<PersonIcon className="mb-2"/> Author {fk_user_id}
+				</p>
+				<div className="d-flex">
+					
+					<p className="mb-0"><i className="far fa-thumbs-up"></i> Like</p>
+					
+					<p className="mb-0 px-3"><i className="far fa-comments"></i> Comments</p>
+					
+					<p className="mb-0"><i className="far fa-share-square"></i> Share</p>
+				</div>
 			</div>
 			{/* <p>{content}</p> */}
 		</Paper>

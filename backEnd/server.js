@@ -44,8 +44,8 @@ app.listen(port, () => {
 	console.log(`server running at port ${port}`);
 });
 
-process.on('uncaughtException',()=>{
-	console.log('uncaught exception');
+process.on('uncaughtException',(err)=>{
+	console.log('uncaught exception',err);
 })
 
 {/* <img
