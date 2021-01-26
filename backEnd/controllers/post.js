@@ -1,5 +1,4 @@
 const Post = require("../models/post.js");
-const { connection } = require("../dbConfig");
 // get all post
 exports.getAllPosts = (req, res) => {
 	console.log(req.query.statusid, " ", typeof req.query.statusid);

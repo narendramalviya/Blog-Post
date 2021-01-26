@@ -5,6 +5,8 @@ const cors = require('cors');
 const app = express();
 
 const post = require('./routes/post');
+const postCategory = require('./routes/postCategory');
+const fileUpload = require('./routes/upload');
 
 app.get('/getFile',(req,res)=>{
 	// res.send('texttt')
@@ -20,25 +22,25 @@ app.use(cors());
 // 	 res.setHeader('Access-Control-Allow-Origin','*');
 // 	 res.setHeader('Access-Control-Allow-Methods','GET','POST','DELETE','OPTIONS','PUT');
 // 	//   // Request headers you wish to allow
-// 	  res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Accept,Access-Control-Allow-Origin');
+// res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Origin');
 
 // 	//   // Set to true if you need the website to include cookies in the requests sent
 // 	//   // to the API (e.g. in case you use sessions)
-// 	  res.setHeader('Access-Control-Allow-Credentials', false);
-
+// 	  res.setHeader('Access-Control-Allow-Credentials', true);
 // 	  next();
-
 // })
 
 app.get("/home", (req, res) => {
 	res.render("home");
 });
 app.get("/photo", (req, res) => {
-	res.sendFile('./public/nk.jpeg');
+	res.sendFile('/public/nk.jpeg');
 });
 
 // routes
 app.use('/api',post);
+app.use('/api',postCategory);
+app.use('/api',fileUpload);
 const port = 7000;
 app.listen(port, () => {
 	console.log(`server running at port ${port}`);
